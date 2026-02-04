@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEON HUNTER Lite | Web Recon Toolkit</title>
+    <script src="lucide.min.js"></script>
+    <style>
+        :root {
+            --bg-dark: #0d1117;
+            --panel-bg: #161b22;
+            --accent-red: #f85149;
+            --border-color: #30363d;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Sidebar Navigation */
+        aside {
+            width: 220px;
+            background: #010409;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+        }
+
+        .brand {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .brand h1 {
+            font-size: 18px;
+            color: var(--accent-red);
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        nav { flex-grow: 1; }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #fff;
+            background: rgba(248, 81, 73, 0.1);
+            border-left: 3px solid var(--accent-red);
+        }
+
+        /* Main Content Area */
+        main {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Tables */
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        th {
+            background: #21262d;
+            padding: 10px;
+            text-align: left;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+            font-family: var(--font-mono);
+        }
+
+        /* Inputs & Buttons */
+        input, select, textarea {
+            background: #0d1117;
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        textarea { height: 150px; font-family: var(--font-mono); font-size: 12px; resize: none; }
+
+        .btn-primary {
+            background: #238636;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover { background: #2ea043; }
+
+        .btn-mini {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 10px;
+        }
+
+        .btn-mini:hover { border-color: var(--accent-red); color: white; }
+
+        /* Stats Badge */
+        .stats-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .stat-item span {
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+
+        .pro-upgrade {
+            margin-top: 40px;
+            padding: 20px;
+            background: linear-gradient(45deg, #161b22, #0d1117);
+            border: 1px solid var(--accent-red);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="brand">
+            <h1>AEON HUNTER <span style="font-size: 10px; color: #fff;">LITE</span></h1>
+        </div>
+        <nav id="sidebar-nav">
+            <a class="nav-link active" data-tab="network">NETWORK HUB</a>
+            <a class="nav-link" data-tab="recon">RECON DB</a>
+            <a class="nav-link" data-tab="repeater">REPEATER</a>
+        </nav>
+        <div style="padding: 20px;">
+            <div id="clock" style="font-size: 12px; color: var(--accent-red); margin-bottom: 10px;">00:00:00</div>
+            <p style="font-size: 10px; color: var(--text-muted);">v1.0.0 (Stable)</p>
+        </div>
+    </aside>
+
+    <main>
+        <h2 id="current-tab-title" style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px; border-left: 3px solid var(--accent-red); padding-left: 10px;">NETWORK HUB</h2>
+
+        <div id="network" class="tab-content active">
+            <div class="card">
+                <div class="card-header">Live Traffic Monitor</div>
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <input type="text" id="traffic-filter" placeholder="Filter by URL or keyword...">
+                    <button id="btn-clear-traffic" class="btn-mini" style="width: 120px;">Clear Logs</button>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>METHOD</th><th>TYPE</th><th>ENDPOINT</th><th>ACTION</th></tr>
+                        </thead>
+                        <tbody id="traffic-table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="recon" class="tab-content">
+            <div class="card">
+                <div class="card-header">Vulnerability Scanner (DOM Analysis)</div>
+                
+                <div class="stats-container">
+                    <div class="stat-item">Parameters Found: <span id="count-params">0</span></div>
+                    <div class="stat-item">API Links Found: <span id="count-links">0</span></div>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button id="btn-deep-scan" class="btn-primary">START RECON SCAN</button>
+                    <button id="btn-download-recon" class="btn-mini">Export CSV</button>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>TYPE</th><th>ENTRY POINT DATA</th><th>RISK</th><th>ACTION</th></tr>
+                        </thead>
+                        <tbody id="recon-db-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="repeater" class="tab-content">
+            <div class="card">
+                <div class="card-header">HTTP Request Repeater</div>
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <select id="rep-method" style="width: 120px;">
+                        <option>GET</option>
+                        <option>POST</option>
+                        <option>PUT</option>
+                        <option>DELETE</option>
+                    </select>
+                    <input type="text" id="rep-url" placeholder="Enter target URL (https://...)">
+                </div>
+                <button id="btn-fire-request" class="btn-primary" style="width: 100%;">FIRE REQUEST</button>
+                
+                <div style="margin-top: 20px;">
+                    <div id="rep-response-status" style="font-size: 11px; margin-bottom: 8px; color: var(--accent-red); font-family: var(--font-mono);">STATUS: READY</div>
+                    <textarea id="rep-response-body" readonly placeholder="The server response will be displayed here..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <section class="pro-upgrade">
+            <h3 style="margin:0; color:white; font-size: 16px;">Upgrade to Aeon Hunter Pro</h3>
+            <p style="font-size: 12px; color: var(--text-muted);">Get access to automated SQLi/XSS fuzzing, IDOR detection, and AI-powered vulnerability reporting.</p>
+            <a href="#" style="text-decoration: none;">
+                <button class="btn-mini" style="border-color: var(--accent-red); color: white; padding: 8px 15px;">EXPLORE PRO SOURCE</button>
+            </a>
+        </section>
+    </main>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
