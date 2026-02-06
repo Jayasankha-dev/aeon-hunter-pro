@@ -23,6 +23,7 @@
             overflow-x: hidden;
         }
 
+        /* Matrix Background Effect */
         #canvas {
             position: fixed;
             top: 0;
@@ -31,6 +32,7 @@
             opacity: 0.15;
         }
 
+        /* Header & Nav */
         nav {
             display: flex;
             justify-content: space-between;
@@ -62,6 +64,7 @@
 
         .nav-links a:hover { color: var(--matrix-red); }
 
+        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
@@ -80,15 +83,14 @@
             background: linear-gradient(to right, #fff, var(--matrix-red));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-family: monospace;
+            font-family: monospace; /* Better for scramble effect */
         }
 
         .hero p {
             font-size: 18px;
             color: #888;
-            max-width: 800px;
+            max-width: 600px;
             margin-bottom: 30px;
-            line-height: 1.6;
         }
 
         .btn-group { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
@@ -122,6 +124,7 @@
 
         .btn-lite:hover { background: rgba(255, 255, 255, 0.1); }
 
+        /* Features Section */
         .features { padding: 100px 10%; background: #080808; }
 
         .section-title {
@@ -150,23 +153,26 @@
 
         .f-card i { color: var(--matrix-red); margin-bottom: 20px; }
 
-        .f-card h3 { margin-bottom: 15px; font-size: 20px; color: #fff; }
+        .f-card h3 { margin-bottom: 15px; font-size: 20px; }
 
         .f-card p { color: #888; font-size: 14px; line-height: 1.6; }
 
+        /* NEW: HORIZONTAL SLIDING SHOWCASE */
         .showcase { 
             padding: 100px 0; 
             text-align: center; 
-            overflow: hidden; 
+            overflow: hidden; /* Hide the scrollbar */
         }
 
         .ss-slider {
             display: flex;
-            width: calc(400px * 12); 
-            animation: scroll 30s linear infinite;
+            width: calc(400px * 8); /* Enough for original + cloned cards */
+            animation: scroll 25s linear infinite;
         }
 
-        .ss-slider:hover { animation-play-state: paused; }
+        .ss-slider:hover {
+            animation-play-state: paused;
+        }
 
         .ss-card {
             width: 400px;
@@ -193,13 +199,8 @@
 
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-400px * 6 - 120px)); }
+            100% { transform: translateX(calc(-400px * 4 - 80px)); } /* Scrolls half-way through the set */
         }
-
-        .trust-section { padding: 80px 10%; background: var(--bg-black); text-align: center; }
-        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-top: 50px; }
-        .trust-item h4 { font-size: 28px; color: var(--matrix-red); margin-bottom: 5px; }
-        .trust-item p { color: #555; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
 
         footer {
             padding: 50px;
@@ -208,19 +209,86 @@
             color: #444;
             font-size: 13px;
         }
-    </style>
+		
+    #ph-floating-widget {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999999;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(10, 10, 10, 0.9);
+        border: 1px solid #ff0033;
+        border-radius: 50px; /* Round shape */
+        padding: 8px 15px 8px 8px;
+        box-shadow: 0 0 15px rgba(255, 0, 51, 0.3);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    #ph-floating-widget:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(255, 0, 51, 0.6);
+        background: #111;
+    }
+
+    #ph-floating-widget img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid #ff0033;
+    }
+
+    .ph-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ph-text span:first-child {
+        color: #fff;
+        font-size: 11px;
+        font-weight: bold;
+        font-family: monospace;
+        letter-spacing: 1px;
+    }
+
+    .ph-text span:last-child {
+        color: #ff0033;
+        font-size: 10px;
+        font-family: monospace;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    /* Mobile optimization */
+    @media (max-width: 600px) {
+        #ph-floating-widget { bottom: 15px; right: 15px; padding: 6px 12px 6px 6px; }
+        #ph-floating-widget img { width: 35px; height: 35px; }
+    }
+</style>
 </head>
 <body>
-
+<a id="ph-floating-widget" href="https://www.producthunt.com/posts/aeon-hunter-ai" target="_blank">
+    <img src="https://ph-files.imgix.net/f894681d-c096-4564-9935-b85b6fbdf5c4.gif?auto=format&fit=crop&w=80&h=80" alt="AEON HUNTER">
+    <div class="ph-text">
+        <span>FIND US ON PRODUCT HUNT</span>
+        <span>SYSTEM_LIVE: 100%</span>
+    </div>
+</a>
     <canvas id="canvas"></canvas>
 
     <nav>
         <div class="logo">AEON HUNTER</div>
         <div class="nav-links">
             <a href="#features">FEATURES</a>
-            <a href="#showcase">INTERFACE</a>
-            <a href="#about">SPECIFICATIONS</a>
-            <a href="YOUR_LITE_VERSION_LINK">LITE VERSION</a>
+            <a href="#showcase">SHOWCASE</a>
+            <a href="https://buymeacoffee.com/BenjaminUS/e/506539">LITE VERSION</a>
         </div>
     </nav>
 
@@ -228,7 +296,7 @@
         <h1 id="hero-title" data-value="AEON HUNTER PRO">AEON HUNTER PRO</h1>
         <p>The ultimate AI-powered reconnaissance suite for professional bug bounty hunters. Detect, analyze, and exploit with neural precision.</p>
         <div class="btn-group">
-            <a href="https://buymeacoffee.com/benjaminus/extras/checkout/a100555b-5263-4fc4-bff5-64b68e5371e5" class="btn btn-pro">
+            <a href="https://buymeacoffee.com/BenjaminUS/e/506539" class="btn btn-pro">
                 <i data-lucide="zap"></i> UPGRADE TO PRO
             </a>
             <a href="YOUR_LITE_DOWNLOAD_LINK" class="btn btn-lite">
@@ -237,105 +305,68 @@
         </div>
     </section>
 
-    <section class="trust-section">
-        <div class="trust-grid">
-            <div class="trust-item">
-                <h4>99.9%</h4>
-                <p>Traffic Capture Accuracy</p>
-            </div>
-            <div class="trust-item">
-                <h4>10+</h4>
-                <p>Security Modules</p>
-            </div>
-            <div class="trust-item">
-                <h4>4.0</h4>
-                <p>Neural Core Version</p>
-            </div>
-            <div class="trust-item">
-                <h4>24/7</h4>
-                <p>AI Recon Readiness</p>
-            </div>
-        </div>
-    </section>
-
     <section class="features" id="features">
-        <h2 class="section-title">Engineered for Dominance</h2>
+        <h2 class="section-title">Dominating the Web Recon</h2>
         <div class="feature-grid">
             <div class="f-card">
-                <i data-lucide="brain-circuit" size="40"></i>
-                <h3>Neural Analysis Engine</h3>
-                <p>The only toolkit featuring an <b>AI Handler</b> that speaks "Hacker Protocol." Connect Gemini, OpenAI, or Anthropic to analyze intercepted responses for IDOR, XSS, and broken access controls instantly.</p>
+                <i data-lucide="cpu" size="40"></i>
+                <h3>Neural AI Analysis</h3>
+                <p>Pro-exclusive integration with OpenAI & Gemini to automatically find logical flaws and security vulnerabilities in real-time.</p>
             </div>
             <div class="f-card">
-                <i data-lucide="eye" size="40"></i>
-                <h3>Stealth Response Interceptor</h3>
-                <p>Utilizing the <b>Chrome Debugger API</b>, AEON captures raw response bodies and hidden headers that standard extensions can't see. Total visibility into the target's backend logic.</p>
+                <i data-lucide="activity" size="40"></i>
+                <h3>Red Matrix Hub</h3>
+                <p>Advanced traffic interceptor that monitors every packet, header, and response with zero latency.</p>
             </div>
             <div class="f-card">
-                <i data-lucide="palette" size="40"></i>
-                <h3>Adaptive UI Themes</h3>
-                <p>Customize your workstation. Switch between <b>Red Matrix, Ice Blue, or Toxic Green</b>. Includes a <b>Custom CSS Injector</b> to build your own aesthetic environment.</p>
-            </div>
-            <div class="f-card">
-                <i data-lucide="terminal" size="40"></i>
-                <h3>Integrated Arsenal</h3>
-                <p>A pre-loaded repository of XSS, SQLi, and SSRF payloads. Deploy them with a single click using the <b>Auto-Injection Core</b> that highlights targets in real-time.</p>
-            </div>
-            <div class="f-card">
-                <i data-lucide="fingerprint" size="40"></i>
-                <h3>Secret Scanner</h3>
-                <p>Automatic background scanning for API Keys, Bearer Tokens, and configuration leaks in JS files. Find critical bugs before the page even finishes loading.</p>
-            </div>
-            <div class="f-card">
-                <i data-lucide="refresh-cw" size="40"></i>
-                <h3>Pro-Grade Repeater</h3>
-                <p>Modify and replay HTTP requests directly from the side panel. Test for bypasses and race conditions without leaving your browser tab.</p>
+                <i data-lucide="shield-alert" size="40"></i>
+                <h3>LPR Recon Engine</h3>
+                <p>Deep-scrapes DOM sinks, hidden endpoints, and API parameters that other tools miss.</p>
             </div>
         </div>
     </section>
 
     <section class="showcase" id="showcase">
-        <h2 class="section-title">System Visualization</h2>
-        <div class="ss-slider">
-            <div class="ss-card"><img src="Capture 1.JPG" alt="Dashboard"><div class="ss-info">SYSTEM: MAIN_DASHBOARD</div></div>
-            <div class="ss-card"><img src="Capture 2.JPG" alt="Traffic Hub"><div class="ss-info">SYSTEM: TRAFFIC_HUB</div></div>
-            <div class="ss-card"><img src="Capture 3.JPG" alt="Recon"><div class="ss-info">SYSTEM: DEEP_RECON</div></div>
-            <div class="ss-card"><img src="Capture 4.JPG" alt="Repeater"><div class="ss-info">SYSTEM: REQUEST_REPEATER</div></div>
-            <div class="ss-card"><img src="Capture 5.JPG" alt="Exploit Lab"><div class="ss-info">SYSTEM: EXPLOIT_ARSENAL</div></div>
-            <div class="ss-card"><img src="Capture 6.JPG" alt="AI Config"><div class="ss-info">SYSTEM: NEURAL_CONFIG</div></div>
-            <div class="ss-card"><img src="Capture 1.JPG" alt="Dashboard"><div class="ss-info">SYSTEM: MAIN_DASHBOARD</div></div>
-            <div class="ss-card"><img src="Capture 2.JPG" alt="Traffic Hub"><div class="ss-info">SYSTEM: TRAFFIC_HUB</div></div>
-            <div class="ss-card"><img src="Capture 3.JPG" alt="Recon"><div class="ss-info">SYSTEM: DEEP_RECON</div></div>
-            <div class="ss-card"><img src="Capture 4.JPG" alt="Repeater"><div class="ss-info">SYSTEM: REQUEST_REPEATER</div></div>
-            <div class="ss-card"><img src="Capture 5.JPG" alt="Exploit Lab"><div class="ss-info">SYSTEM: EXPLOIT_ARSENAL</div></div>
-            <div class="ss-card"><img src="Capture 6.JPG" alt="AI Config"><div class="ss-info">SYSTEM: NEURAL_CONFIG</div></div>
+    <h2 class="section-title">Visual Interface</h2>
+    <div class="ss-slider">
+        <div class="ss-card">
+            <img src="Capture 1.JPG" alt="Dashboard">
+            <div class="ss-info">MODULE: AI_CORE_DASHBOARD</div>
         </div>
-    </section>
 
-    <section class="trust-section" id="about" style="border-top: 1px solid var(--border);">
-        <h2 class="section-title">Recommended For</h2>
-        <p style="color: #888; margin-top: -40px; margin-bottom: 40px;">Professional Grade Hardware for Ethical Security Researchers</p>
-        <div class="feature-grid">
-            <div class="f-card">
-                <h3>Bug Bounty Hunters</h3>
-                <p>Automate your reconnaissance phase and find high-severity vulnerabilities faster than manual researchers using AI synthesis.</p>
-            </div>
-            <div class="f-card">
-                <h3>Pentesters</h3>
-                <p>A portable security lab that lives in your browser. Perfect for rapid assessment of web applications without heavy external tools.</p>
-            </div>
-            <div class="f-card">
-                <h3>Cyber-Security Students</h3>
-                <p>Visualize how web traffic, headers, and payloads interact. Learn professional recon techniques with a high-end interface.</p>
-            </div>
+        <div class="ss-card">
+            <img src="Capture 2.JPG" alt="Traffic Hub">
+            <div class="ss-info">MODULE: TRAFFIC_HUB_ANALYZER</div>
         </div>
-    </section>
+
+        <div class="ss-card">
+            <img src="Capture 3.JPG" alt="Recon">
+            <div class="ss-info">MODULE: DEEP_RECON_SCANNER</div>
+        </div>
+
+        <div class="ss-card">
+            <img src="Capture 4.JPG" alt="Repeater">
+            <div class="ss-info">MODULE: REQUEST_REPEATER_V1</div>
+        </div>
+
+        <div class="ss-card">
+            <img src="Capture 5.JPG" alt="Exploit Lab">
+            <div class="ss-info">MODULE: AUTO_EXPLOIT_ENGINE</div>
+        </div>
+
+        <div class="ss-card">
+            <img src="Capture 6.JPG" alt="AI Config">
+            <div class="ss-info">MODULE: NEURAL_LINK_CONFIG</div>
+        </div>
+    </div>
+</section>
 
     <footer>
-        <p>&copy; 2024 AEON CYBERSECURITY SYSTEMS. BUILT FOR THE NEXT GENERATION OF HUNTERS.</p>
+        <p>&copy; 2024 AEON CYBERSECURITY SYSTEMS. ALL RIGHTS RESERVED.</p>
     </footer>
 
     <script>
+        // Matrix Rain Effect
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         let w = canvas.width = window.innerWidth;
@@ -359,6 +390,7 @@
         }
         setInterval(matrix, 50);
 
+        // SCRAMBLE TEXT ANIMATION
         const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
         const title = document.getElementById("hero-title");
         
@@ -368,7 +400,9 @@
                 title.innerText = title.innerText
                 .split("")
                 .map((letter, index) => {
-                    if(index < iteration) return title.dataset.value[index];
+                    if(index < iteration) {
+                        return title.dataset.value[index];
+                    }
                     return letters[Math.floor(Math.random() * 44)]
                 })
                 .join("");
@@ -378,8 +412,12 @@
             }, 30);
         }
         
+        // Run scramble on load
         window.onload = startScramble;
+        // Run scramble on hover
         title.onmouseover = startScramble;
+
+        // Initialize Lucide Icons
         lucide.createIcons();
     </script>
 </body>
