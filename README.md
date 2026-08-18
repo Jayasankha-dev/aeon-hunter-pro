@@ -9,9 +9,6 @@ AEON HUNTER is a professional reconnaissance suite built for bug hunters.
 - **Traffic Hub:** Advanced packet interceptor.
 - **LPR Recon:** Deep endpoint discovery.
 
-## 💰 Purchase Pro Version
-You can get the full source code and pro modules here:
-[Buy AEON HUNTER PRO](https://buymeacoffee.com/benjaminus/e/506539)
 
 ## 🛠️ Installation
 1. Clone the repo
