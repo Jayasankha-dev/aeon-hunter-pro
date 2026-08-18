@@ -2,7 +2,7 @@
 ### Next-Gen AI Bug Hunting Suite
 ![Capture 1](https://github.com/user-attachments/assets/a6e73580-f1e6-4063-bdd5-c0382c3f56dd)
 
-AEON HUNTER is a professional reconnaissance suite built for bug hunters.
+Aeon Hunter is an intuitive utility tool designed to visualize and monitor website traffic dynamically. It is a lightweight solution perfect for beginners. Please note: This is not an offensive hacking suite like Burp Suite; it is built for educational monitoring and traffic analysis.
 
 ## 🚀 Features
 - **Neural AI Analysis:** Real-time vulnerability detection.
