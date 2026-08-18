@@ -91,6 +91,7 @@
             color: #888;
             max-width: 600px;
             margin-bottom: 30px;
+            line-height: 1.6;
         }
 
         .btn-group { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
@@ -209,78 +210,9 @@
             color: #444;
             font-size: 13px;
         }
-		
-    #ph-floating-widget {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 999999;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        background: rgba(10, 10, 10, 0.9);
-        border: 1px solid #ff0033;
-        border-radius: 50px; /* Round shape */
-        padding: 8px 15px 8px 8px;
-        box-shadow: 0 0 15px rgba(255, 0, 51, 0.3);
-        backdrop-filter: blur(10px);
-        transition: all 0.3s ease;
-        text-decoration: none;
-        animation: float 3s ease-in-out infinite;
-    }
-
-    #ph-floating-widget:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 25px rgba(255, 0, 51, 0.6);
-        background: #111;
-    }
-
-    #ph-floating-widget img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        border: 2px solid #ff0033;
-    }
-
-    .ph-text {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .ph-text span:first-child {
-        color: #fff;
-        font-size: 11px;
-        font-weight: bold;
-        font-family: monospace;
-        letter-spacing: 1px;
-    }
-
-    .ph-text span:last-child {
-        color: #ff0033;
-        font-size: 10px;
-        font-family: monospace;
-    }
-
-    @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-    }
-
-    /* Mobile optimization */
-    @media (max-width: 600px) {
-        #ph-floating-widget { bottom: 15px; right: 15px; padding: 6px 12px 6px 6px; }
-        #ph-floating-widget img { width: 35px; height: 35px; }
-    }
 </style>
 </head>
 <body>
-<a id="ph-floating-widget" href="https://www.producthunt.com/posts/aeon-hunter-ai" target="_blank">
-    <img src="https://ph-files.imgix.net/f894681d-c096-4564-9935-b85b6fbdf5c4.gif?auto=format&fit=crop&w=80&h=80" alt="AEON HUNTER">
-    <div class="ph-text">
-        <span>FIND US ON PRODUCT HUNT</span>
-        <span>SYSTEM_LIVE: 100%</span>
-    </div>
-</a>
     <canvas id="canvas"></canvas>
 
     <nav>
@@ -294,9 +226,9 @@
 
     <section class="hero">
         <h1 id="hero-title" data-value="AEON HUNTER PRO">AEON HUNTER PRO</h1>
-        <p>The ultimate AI-powered reconnaissance suite for professional bug bounty hunters. Detect, analyze, and exploit with neural precision.</p>
+        <p>Aeon Hunter is an intuitive utility tool designed to visualize and monitor website traffic dynamically. It is a lightweight solution perfect for beginners. Please note: This is not an offensive hacking suite like Burp Suite; it is built for educational monitoring and traffic analysis.</p>
         <div class="btn-group">
-            <a href="https://www.buymeacoffee.com/BenjaminUS/e/506539/discounts/10935" class="btn btn-pro">
+            <a href="https://github.com/Jayasankha-dev/aeon-hunter-pro/releases/download/aeonhunterpro/AeonHunterProEx.exe" class="btn btn-pro">
                 <i data-lucide="zap"></i> UPGRADE TO PRO
             </a>
             <a href="https://chromewebstore.google.com/detail/cdnfociaemfbgfacdebeompkmhbpnchc?utm_source=item-share-cb" class="btn btn-lite">
