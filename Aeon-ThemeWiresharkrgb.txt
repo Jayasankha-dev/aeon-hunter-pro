@@ -1,0 +1,134 @@
+/* ==========================================================
+   AEON HUNTER PRO - RGB DYNAMIC CORE ENGINE (WIRESHARK VIBE)
+   ========================================================== */
+
+@property --current-color {
+  syntax: '<color>';
+  initial-value: #007bff;
+  inherits: true;
+}
+
+/* HIGH-SPEED COLOR SPECTRUM LOOP */
+@keyframes spectrum-loop {
+    0%   { --current-color: #ff0033; } /* Original Matrix Red */
+    25%  { --current-color: #007bff; } /* Wireshark Blue */
+    50%  { --current-color: #00f2ff; } /* Kali Cyan */
+    75%  { --current-color: #7000ff; } /* Deep Purple */
+    100% { --current-color: #ff0033; }
+}
+
+/* FULL UI SETUP WITH TECHNICAL GRID */
+body {
+    animation: spectrum-loop 12s linear infinite;
+    background-color: #02040a !important;
+    /* Wireshark technical blue grid lines */
+    background-image: 
+        linear-gradient(rgba(0, 123, 255, 0.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 123, 255, 0.12) 1px, transparent 1px) !important;
+    background-size: 35px 35px !important;
+    background-attachment: fixed;
+    margin: 0;
+    color: #d1d1e0;
+    font-family: 'Consolas', 'Courier New', monospace !important;
+}
+
+/* BRAND / EXTENSION NAME - SIZE PRESERVED */
+.brand {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border-bottom: 2px solid var(--current-color);
+    padding: 15px 20px;
+}
+
+.brand h1 {
+    color: var(--current-color) !important;
+    text-shadow: 0 0 15px var(--current-color);
+    transition: color 0.5s ease;
+    font-weight: 900;
+}
+
+/* WIRESHARK STYLE SIDEBAR TABS */
+aside, .sidebar, #sidebar-nav {
+    background: transparent !important; /* Makes grid visible */
+}
+
+.nav-link {
+    font-family: 'Consolas', monospace !important;
+    color: #a6accd !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    margin: 4px 12px !important;
+    font-size: 11px !important;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--current-color) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ACTIVE TAB - SHARP SLANT LOOK */
+.nav-link.active {
+    background: var(--current-color) !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+    font-weight: bold;
+    clip-path: polygon(0% 0%, 92% 0%, 100% 100%, 0% 100%); 
+    box-shadow: 0 0 20px var(--current-color);
+}
+
+/* CONTENT CARDS & PANELS */
+.card, .panel {
+    background: rgba(5, 7, 12, 0.9) !important; 
+    border: 2px solid var(--current-color) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
+    transition: border 0.5s ease;
+    border-radius: 0px !important; /* Sharp edges for Pro look */
+}
+
+/* TECHNICAL ACCENTS */
+.card-label, #clock, #current-tab-title {
+    color: var(--current-color) !important;
+    text-transform: uppercase;
+    font-family: 'Consolas', monospace !important;
+    font-weight: bold;
+    text-shadow: 0 0 8px var(--current-color);
+}
+
+/* BUTTONS - CYBERPUNK STYLE */
+.btn-cyber {
+    border: 2px solid var(--current-color) !important;
+    color: var(--current-color) !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-cyber:hover {
+    background: var(--current-color) !important;
+    color: #000 !important;
+    box-shadow: 0 0 15px var(--current-color);
+}
+
+/* TERMINAL LOG ACCENT */
+#terminal-output, .terminal-box, #strike-log {
+    border-left: 5px solid var(--current-color) !important;
+    background: #000 !important;
+    color: #00ff00 !important; /* Classic terminal green text */
+    font-family: 'Fira Code', monospace !important;
+}
+
+/* LED BLINK INDICATOR */
+#engine-status::before {
+    content: "●";
+    color: var(--current-color);
+    margin-right: 10px;
+    animation: led-flash 1s infinite alternate;
+}
+
+@keyframes led-flash {
+    0% { opacity: 0.3; filter: blur(2px); }
+    100% { opacity: 1; filter: blur(0px); }
+}
