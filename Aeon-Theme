@@ -1,0 +1,163 @@
+/* AEON HUNTER - KALI LINUX UNDERCOVER THEME */
+:root {
+    --bg-black: #0f111a !important; /* Kali Dark Background */
+    --panel-bg: #1a1c2b !important;
+    --matrix-red: #007bff !important; /* Classic Kali Blue */
+    --kali-grey: #2a2d3e !important;
+    --kali-cyan: #00f2ff !important;
+}
+
+/* Background & Main UI */
+body {
+    background-color: #0f111a !important;
+    background-image: linear-gradient(rgba(0, 123, 255, 0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0, 123, 255, 0.03) 1px, transparent 1px) !important;
+    background-size: 20px 20px !important; /* Terminal Grid */
+    color: #a6accd !important;
+    font-family: 'Fira Code', 'Cascadia Code', monospace !important;
+}
+
+/* Kali LED Running Border Animation */
+@keyframes kali-led-run {
+    0% { border-image: linear-gradient(to right, #007bff, #00f2ff, #1a1c2b) 1; }
+    50% { border-image: linear-gradient(to right, #1a1c2b, #007bff, #00f2ff) 1; }
+    100% { border-image: linear-gradient(to right, #00f2ff, #1a1c2b, #007bff) 1; }
+}
+
+.dashboard, .panel, .card {
+    background: var(--panel-bg) !important;
+    border: 2px solid !important;
+    border-image: linear-gradient(to right, #007bff, #00f2ff) 1 !important;
+    animation: kali-led-run 3s linear infinite !important;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.2) !important;
+}
+
+/* Kali Terminal Style Output */
+#terminal-output, #strike-log {
+    background: #050505 !important;
+    border-left: 3px solid #007bff !important;
+    color: #00ff00 !important; /* Classic Terminal Green */
+    font-size: 13px !important;
+}
+
+/* Buttons like Kali XFCE Desktop */
+button {
+    background: var(--kali-grey) !important;
+    border: 1px solid #444 !important;
+    color: #eee !important;
+    border-radius: 4px !important;
+    font-weight: bold !important;
+    box-shadow: 2px 2px 0px #000 !important;
+}
+
+button:hover {
+    background: #007bff !important;
+    color: white !important;
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.6) !important;
+    transform: translateY(-1px);
+}
+
+/* LED Indicator for Engine Status */
+#engine-status {
+    color: #00f2ff !important;
+    text-shadow: 0 0 8px #00f2ff;
+    font-weight: 800;
+}
+
+/* Tag labels like Kali categories */
+.tag {
+    background: #007bff !important;
+    color: white !important;
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%); /* Angled Kali-style tags */
+    padding: 2px 15px !important;
+}
+
+/* AEON HUNTER - INFINITE SPECTRUM LOOP 
+  A dynamic engine-wide patch that cycles through all possible HUE phases.
+*/
+
+:root {
+    /* Main Background remains dark for contrast */
+    --bg-black: #050505 !important;
+    --panel-bg: rgba(5, 5, 8, 0.95) !important;
+}
+
+/* THE CORE ANIMATION 
+   Cycles through the HSL color wheel (0 to 360)
+*/
+@keyframes global-spectrum {
+    0%   { --current-color: #ff0033; filter: hue-rotate(0deg); }
+    10%  { filter: hue-rotate(36deg); }
+    20%  { filter: hue-rotate(72deg); }
+    30%  { filter: hue-rotate(108deg); }
+    40%  { filter: hue-rotate(144deg); }
+    50%  { filter: hue-rotate(180deg); }
+    60%  { filter: hue-rotate(216deg); }
+    70%  { filter: hue-rotate(252deg); }
+    80%  { filter: hue-rotate(288deg); }
+    90%  { filter: hue-rotate(324deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+/* Apply the loop to the entire body container */
+body {
+    animation: global-spectrum 20s linear infinite !important;
+    background-color: var(--bg-black) !important;
+}
+
+/* LED GLOW EFFECTS 
+   Making every panel border and text glow with the cycling color
+*/
+.dashboard, .panel, .card {
+    border: 2px solid #ff0033 !important; /* Base color that gets rotated */
+    background: var(--panel-bg) !important;
+    box-shadow: 0 0 15px rgba(255, 0, 51, 0.2) !important;
+    transition: box-shadow 0.5s ease;
+}
+
+/* Glow intensity pulse */
+@keyframes led-breathe {
+    0%, 100% { box-shadow: 0 0 10px rgba(255, 0, 51, 0.3); }
+    50% { box-shadow: 0 0 25px rgba(255, 0, 51, 0.6); }
+}
+
+.panel {
+    animation: led-breathe 3s ease-in-out infinite !important;
+}
+
+/* Title & Header LED Styling */
+.brand h1, .card-label, #clock {
+    color: #ff0033 !important;
+    text-shadow: 0 0 10px rgba(255, 0, 51, 0.8) !important;
+}
+
+/* Buttons Styling */
+button {
+    background: transparent !important;
+    border: 1px solid #ff0033 !important;
+    color: #fff !important;
+    text-transform: uppercase !important;
+    font-weight: bold !important;
+    letter-spacing: 1px !important;
+    transition: 0.3s all !important;
+}
+
+button:hover {
+    background: #ff0033 !important;
+    color: #000 !important;
+    box-shadow: 0 0 20px #ff0033 !important;
+}
+
+/* Custom Scrollbar to match the loop */
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: #ff0033 !important;
+}
+
+/* Terminal & Log Text styling */
+#terminal-output, #strike-log {
+    border-left: 2px solid #ff0033 !important;
+    background: rgba(0, 0, 0, 0.8) !important;
+}
